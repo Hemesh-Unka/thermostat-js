@@ -22,6 +22,26 @@ describe("Thermostat", function() {
     it('decreases the current temperature by 1 degree', function() {
       thermostat.descreaseTemperature();
       expect(thermostat.currentTemperature()).toEqual(19);
-    })
-  })
+    });
+
+    it('does not decrease the current temperature if below 10 degrees', function() {
+
+      for (i = 0; i < 50; i++) {
+        thermostat.descreaseTemperature();
+      };
+
+      expect(thermostat.currentTemperature()).toEqual(10);
+    });
+  });
+
+  describe('isAtMininumTemperature', function() {
+    it('returns true if mininum temperature has been reached', function() {
+
+      for (i = 0; i < 15; i++) {
+        thermostat.descreaseTemperature();
+      };
+
+    expect(thermostat.isAtMininumTemperature()).toEqual(true);
+    });
+  });
 });

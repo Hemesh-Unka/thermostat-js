@@ -1,7 +1,11 @@
 'use strict';
 
+const MININUM_INCREMENT = 1;
+const MININUM_TEMPERATURE = 10;
+const DEFAULT_TEMPERATURE = 20;
+
 function Thermostat() {
-  this._temperature = 20;
+  this._temperature = DEFAULT_TEMPERATURE;
 };
 
 Thermostat.prototype.currentTemperature = function() {
@@ -9,9 +13,21 @@ Thermostat.prototype.currentTemperature = function() {
 };
 
 Thermostat.prototype.increaseTemperature = function() {
-  this._temperature  = this._temperature + 1;
+  this._temperature  = this._temperature + MININUM_INCREMENT;
 };
 
 Thermostat.prototype.descreaseTemperature = function() {
-  this._temperature = this._temperature - 1;
+  if (this.isAtMininumTemperature()) {
+    this._temperature = MININUM_TEMPERATURE;
+  } else {
+    this._temperature = this._temperature - MININUM_INCREMENT;
+  }
+};
+
+Thermostat.prototype.isAtMininumTemperature = function() {
+  if (this._temperature <= MININUM_TEMPERATURE) {
+    return true;
+  } else {
+    return false;
+  };
 };
