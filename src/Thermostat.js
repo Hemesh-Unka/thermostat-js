@@ -11,3 +11,7 @@ Thermostat.prototype.currentTemperature = function() {
 Thermostat.prototype.increaseTemperature = function() {
   this._temperature  = this._temperature + 1;
 };
+
+Thermostat.prototype.descreaseTemperature = function() {
+  this._temperature = this._temperature - 1;
+};
