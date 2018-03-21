@@ -25,23 +25,33 @@ describe("Thermostat", function() {
     });
 
     it('does not decrease the current temperature if below 10 degrees', function() {
+    for (i = 0; i < 50; i++) {
+      thermostat.descreaseTemperature();
+    };
 
-      for (i = 0; i < 50; i++) {
-        thermostat.descreaseTemperature();
-      };
-
-      expect(thermostat.currentTemperature()).toEqual(10);
+    expect(thermostat.currentTemperature()).toEqual(10);
     });
   });
 
   describe('isAtMininumTemperature', function() {
     it('returns true if mininum temperature has been reached', function() {
-
-      for (i = 0; i < 15; i++) {
-        thermostat.descreaseTemperature();
-      };
+    for (i = 0; i < 15; i++) {
+      thermostat.descreaseTemperature();
+    };
 
     expect(thermostat.isAtMininumTemperature()).toEqual(true);
+    });
+  });
+
+  // describe('isPowerSavingModeEnabled', function() {
+  // expect(thermostat.isPowerSavingModeEnabled()).toEqual(true);
+  // });
+
+  describe('resetTemperature', function() {
+    it('resets the thermostat temperature to 20', function() {
+      thermostat.increaseTemperature();
+      thermostat.resetTemperature();
+      expect(thermostat.currentTemperature()).toEqual(20);
     });
   });
 });
