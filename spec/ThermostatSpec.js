@@ -16,6 +16,24 @@ describe("Thermostat", function() {
       thermostat.increaseTemperature();
       expect(thermostat.currentTemperature()).toEqual(21);
     });
+
+    it('does not increase the temperature past 25 degrees if PSM is on', function() {
+      for (i = 0; i < 50; i++) {
+        thermostat.increaseTemperature();
+      };
+
+      expect(thermostat.currentTemperature()).toEqual(25);
+    });
+
+    it('does not increase the temperature past 32 degrees if PSM is off', function() {
+      thermostat.togglePowerSavingMode();
+
+      for (i = 0; i < 50; i++) {
+        thermostat.increaseTemperature();
+      };
+
+      expect(thermostat.currentTemperature()).toEqual(32);
+    });
   });
 
   describe('descreaseTemperature', function() {
@@ -43,9 +61,35 @@ describe("Thermostat", function() {
     });
   });
 
-  // describe('isPowerSavingModeEnabled', function() {
-  // expect(thermostat.isPowerSavingModeEnabled()).toEqual(true);
-  // });
+  describe('isPowerSavingModeEnabled', function() {
+    it('returns true on initialization', function() {
+      expect(thermostat.isPowerSavingModeEnabled()).toEqual(true);
+    });
+
+    it('maximum thermostat temperature is 25 degrees if power saving mode is enabled', function() {
+      expect(thermostat.maximumTemperature()).toEqual(25);
+    });
+
+    it('maximum thermostat temperature is 32 degress uf power saving mode is disabled', function() {
+      thermostat.togglePowerSavingMode();
+      expect(thermostat.maximumTemperature()).toEqual(32);
+    });
+  });
+
+  describe('togglePowerSavingMode', function() {
+    it('toggles PSM mode from true to false', function() {
+      thermostat.togglePowerSavingMode();
+      expect(thermostat._powerSavingModeEnabled).toEqual(false)
+    });
+
+    it('toggles PSM mode from false to true', function() {
+      //false
+      thermostat.togglePowerSavingMode();
+      // true
+      thermostat.togglePowerSavingMode();
+      expect(thermostat._powerSavingModeEnabled).toEqual(true)
+    });
+  });
 
   describe('resetTemperature', function() {
     it('resets the thermostat temperature to 20', function() {

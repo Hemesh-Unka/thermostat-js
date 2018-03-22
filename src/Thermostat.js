@@ -3,6 +3,8 @@
 const MININUM_INCREMENT = 1;
 const MININUM_TEMPERATURE = 10;
 const DEFAULT_TEMPERATURE = 20;
+const PSM_ON_MAX_TEMPERATURE = 25;
+const PSM_OFF_MAX_TEMPERATURE = 32;
 
 function Thermostat() {
   this._temperature = DEFAULT_TEMPERATURE;
@@ -14,7 +16,11 @@ Thermostat.prototype.currentTemperature = function() {
 };
 
 Thermostat.prototype.increaseTemperature = function() {
-  this._temperature  += MININUM_INCREMENT;
+  if (this._temperature === this.maximumTemperature()) {
+    this._temperature === this.maximumTemperature()
+  } else {
+    this._temperature  += MININUM_INCREMENT;
+  }
 };
 
 Thermostat.prototype.descreaseTemperature = function() {
@@ -33,8 +39,20 @@ Thermostat.prototype.isAtMininumTemperature = function() {
   };
 };
 
+Thermostat.prototype.togglePowerSavingMode = function() {
+  this._powerSavingModeEnabled = !this._powerSavingModeEnabled;
+};
+
 Thermostat.prototype.isPowerSavingModeEnabled = function() {
-  return this._mode;
+  return this._powerSavingModeEnabled;
+};
+
+Thermostat.prototype.maximumTemperature = function () {
+  if (this.isPowerSavingModeEnabled()) {
+    return PSM_ON_MAX_TEMPERATURE;
+  } else {
+    return PSM_OFF_MAX_TEMPERATURE;
+  };
 };
 
 Thermostat.prototype.resetTemperature = function() {
