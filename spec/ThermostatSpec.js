@@ -98,4 +98,27 @@ describe("Thermostat", function() {
       expect(thermostat.currentTemperature()).toEqual(20);
     });
   });
+
+  describe('currentEnergyUsage', function() {
+    it('returns low-usage if temeperature is below 18 degrees', function() {
+      for (i = 0; i < 15; i++) {
+        thermostat.descreaseTemperature();
+      };
+
+      expect(thermostat.currentEnergyUsage()).toEqual("Low Usage");
+    });
+
+    it('returns high usage if temperature is over 25 degrees', function() {
+      for (i = 0; i < 15; i++) {
+        thermostat.increaseTemperature();
+      };
+
+      expect(thermostat.currentEnergyUsage()).toEqual("High Usage");
+    });
+
+    it('returns medium usage if temeperature is within 18 to 25 degrees', function() {
+      thermostat.descreaseTemperature();
+      expect(thermostat.currentEnergyUsage()).toEqual('Medium Usage');
+    });
+  });
 });

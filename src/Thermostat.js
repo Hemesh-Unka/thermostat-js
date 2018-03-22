@@ -1,10 +1,16 @@
 'use strict';
 
 const MININUM_INCREMENT = 1;
+
 const MININUM_TEMPERATURE = 10;
 const DEFAULT_TEMPERATURE = 20;
+
 const PSM_ON_MAX_TEMPERATURE = 25;
 const PSM_OFF_MAX_TEMPERATURE = 32;
+
+const LOW_ENERGY_USAGE_TEMPERATURE = 18;
+const HIGH_ENERGY_USAGE_TEMPERATURE = 25;
+
 
 function Thermostat() {
   this._temperature = DEFAULT_TEMPERATURE;
@@ -58,3 +64,13 @@ Thermostat.prototype.maximumTemperature = function () {
 Thermostat.prototype.resetTemperature = function() {
   this._temperature = DEFAULT_TEMPERATURE;
 };
+
+Thermostat.prototype.currentEnergyUsage = function() {
+  if (this._temperature <= LOW_ENERGY_USAGE_TEMPERATURE) {
+    return "Low Usage";
+  } else if (this._temperature >= HIGH_ENERGY_USAGE_TEMPERATURE)  {
+    return "High Usage";
+  } else {
+    return "Medium Usage";
+  }
+}
