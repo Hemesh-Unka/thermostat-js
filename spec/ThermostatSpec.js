@@ -83,9 +83,9 @@ describe("Thermostat", function() {
     });
 
     it('toggles PSM mode from false to true', function() {
-      //false
       thermostat.togglePowerSavingMode();
-      // true
+      expect(thermostat._powerSavingModeEnabled).toBe(false);
+
       thermostat.togglePowerSavingMode();
       expect(thermostat._powerSavingModeEnabled).toEqual(true)
     });

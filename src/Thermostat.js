@@ -61,16 +61,20 @@ Thermostat.prototype.maximumTemperature = function () {
   };
 };
 
+Thermostat.prototype.mininumTemperature = function() {
+  return MININUM_TEMPERATURE;
+};
+
 Thermostat.prototype.resetTemperature = function() {
   this._temperature = DEFAULT_TEMPERATURE;
 };
 
 Thermostat.prototype.currentEnergyUsage = function() {
   if (this._temperature <= LOW_ENERGY_USAGE_TEMPERATURE) {
-    return "Low Usage";
+    return "low-usage";
   } else if (this._temperature >= HIGH_ENERGY_USAGE_TEMPERATURE)  {
-    return "High Usage";
+    return "high-usage";
   } else {
-    return "Medium Usage";
+    return "medium-usage";
   }
 }

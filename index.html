@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="styling.css">
+    <link rel="stylesheet" href="dist/spectre.min.css">
+    <link rel="stylesheet" href="dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="dist/spectre-icons.min.css">
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="src/Thermostat.js" async></script>
+    <script src="src/interface.js" async></script>
+
+    <title>Thermostat</title>
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="columns">
+        <div class="column col-2 text-center">
+          <h1 id="temperature"></h1>
+        </div>
+        <div class="column col-1 text-center">
+          <div class="float-right">
+            <img id="outside-weather" style="margin-bottom:-20px; padding-top:10px"></img>
+          </div>
+          <div id="city" class="text-right"></div>
+          <div id="city-temperature" class="text-right"></div>
+        </div>
+      </div>
+
+      <div class="columns">
+        <div class="column col-3 text-center">
+          <div class="bar">
+            <div id="progress" class="bar-item" role="progressbar" style="width:25%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="columns">
+        <div class="column col-3 text-center">
+          <div class="btn-group btn-group-block">
+            <button id="down" class="btn btn-lg">-</button>
+            <button id="up" class="btn btn-lg">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="columns">
+        <div class="column col-3 text-center">
+          <div class="btn-group btn-group-block" style="padding-top:10px">
+            <button id="reset" class="btn btn-lg">Reset</button>
+            <button id="toggle" class="btn btn-lg">PSM On</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
